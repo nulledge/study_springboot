@@ -1,4 +1,4 @@
-package none.study_spring;
+package nulledge.study_spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

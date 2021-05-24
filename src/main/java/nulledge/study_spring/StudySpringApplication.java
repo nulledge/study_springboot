@@ -1,4 +1,4 @@
-package none.study_spring;
+package nulledge.study_spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
