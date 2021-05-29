@@ -4,29 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import nulledge.study_spring.entity.TestEntity;
-import nulledge.study_spring.repo.TestRepository;
+import nulledge.study_spring.entity.Member;
+import nulledge.study_spring.repo.MemberRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class TestService {
+public class MemberService {
 	
 	@Autowired
-	TestRepository repository;
+	MemberRepository repository;
 
 	@Transactional(readOnly = false)
-	public Long create(TestEntity entity) {
-		return repository.save(entity);
+	public Long create(Member member) {
+		return repository.save(member);
 	}
 
-	public TestEntity read(Long id) {
+	public Member read(Long id) {
 		return repository.find(id);
 	}
 
 	@Transactional(readOnly = false)
-	public TestEntity update(Long id, TestEntity entity) {
-		TestEntity target = this.read(id);
-		target.setName(entity.getName());
+	public Member update(Long id, Member member) {
+		Member target = this.read(id);
+		target.setName(member.getName());
+		target.setPassword(member.getPassword());
 		return target;
 	}
 
@@ -34,5 +35,4 @@ public class TestService {
 	public boolean delete(Long id) {
 		return repository.delete(id);
 	}
-
 }

@@ -10,15 +10,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TestEntity {
+public class Member {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	private String name;
 
-	@Override
-	public String toString() {
-		return String.format("Test(id=%d, name=%s)", id, name);
-	}
+	private String password;
+
+	private String name;
 }

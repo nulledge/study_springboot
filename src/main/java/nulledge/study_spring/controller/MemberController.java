@@ -1,4 +1,4 @@
-package nulledge.study_spring;
+package nulledge.study_spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,36 +9,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nulledge.study_spring.entity.TestEntity;
-import nulledge.study_spring.service.TestService;
+import nulledge.study_spring.entity.Member;
+import nulledge.study_spring.service.MemberService;
 
 @RestController
-public class TestController {
-
-	@Autowired
-	TestService service;
+public class MemberController {
 	
-	@GetMapping("/")
-	String getHello() {
-		return "Hello World!";
+	@Autowired
+	MemberService service;
+
+	@PostMapping("/member")
+	Long create(@RequestBody Member member) {
+		return service.create(member);
 	}
 
-	@PostMapping("/test")
-	Long create(@RequestBody TestEntity entity) {
-		return service.create(entity);
-	}
-
-	@GetMapping("/test/{id}")
-	TestEntity read(@PathVariable Long id) {
+	@GetMapping("/member/{id}")
+	Member read(@PathVariable Long id) {
 		return service.read(id);
 	}
 
-	@PutMapping("/test/{id}")
-	TestEntity update(@RequestBody TestEntity entity, @PathVariable Long id) {
-		return service.update(id, entity);
+	@PutMapping("/member/{id}")
+	Member update(@RequestBody Member member, @PathVariable Long id) {
+		return service.update(id, member);
 	}
 
-	@DeleteMapping("/test/{id}")
+	@DeleteMapping("/member/{id}")
 	boolean delete(@PathVariable Long id) {
 		return service.delete(id);
 	}

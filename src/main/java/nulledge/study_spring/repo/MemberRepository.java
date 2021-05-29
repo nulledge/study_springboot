@@ -5,32 +5,34 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import nulledge.study_spring.entity.TestEntity;
+import nulledge.study_spring.entity.Member;
 
 @Repository
-public class TestRepository {
+public class MemberRepository {
 
 	@Autowired
 	EntityManager manager;
 
-	public Long save(TestEntity entity) {
-		manager.persist(entity);
-		return entity.getId();
+	public Long save(Member member) {
+		manager.persist(member);
+		return member.getId();
 	}
 
-	public TestEntity find(Long id) {
-		return manager.find(TestEntity.class, id);
+	public Member find(Long id) {
+		return manager.find(Member.class, id);
 	}
 
 	public boolean delete(Long id) {
-		TestEntity entity = this.find(id);
+		Member member = this.find(id);
 		try {
-			manager.remove(entity);
+			manager.remove(member);
 			manager.flush();
 			manager.clear();
-		} catch (Exception e) {
+			return true;
+		}
+		catch (Exception e) {
 			return false;
 		}
-		return true;
 	}
+	
 }
