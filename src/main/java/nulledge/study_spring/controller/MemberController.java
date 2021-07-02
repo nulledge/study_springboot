@@ -18,6 +18,7 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
+	// curl -X POST localhost:8080/member -H 'Content-type:application/json' -d '{"id" : "ID", "name" : "NAME", "password" : "PASSWORD"}'
 	@PostMapping("/member")
 	Optional<Member> register(@RequestBody Member member) {
 		return service.register(member);
@@ -28,6 +29,7 @@ public class MemberController {
 		return service.checkDuplicated(id);
 	}
 
+	// curl -X GET localhost:8080/member/ID
 	@GetMapping("/member/{id}")
 	Optional<Member> get(@PathVariable String id) {
 		return service.findById(id);
